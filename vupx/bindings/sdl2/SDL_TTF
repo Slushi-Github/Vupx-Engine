@@ -1,0 +1,71 @@
+package vupx.bindings.sdl2;
+
+@:buildXml('<include name="${haxelib:vupxengine}/include.xml"/>')
+@:include("SDL2/SDL_ttf.h")
+@:native("TTF_Font")
+extern class TTF_Font {
+    @:haxe.warning("-WExternWithExpr")
+    public function new() {}
+}
+
+@:buildXml('<include name="${haxelib:vupxengine}/include.xml"/>')
+@:include("SDL2/SDL_ttf.h")
+extern class SDL_TTF {
+    @:native("TTF_STYLE_NORMAL")
+    @:include("SDL2/SDL_ttf.h")
+    public static var TTF_STYLE_NORMAL:Int;
+
+    @:native("TTF_STYLE_BOLD")
+    @:include("SDL2/SDL_ttf.h")
+    public static var TTF_STYLE_BOLD:Int;
+
+    @:native("TTF_STYLE_ITALIC")
+    @:include("SDL2/SDL_ttf.h")
+    public static var TTF_STYLE_ITALIC:Int;
+
+    @:native("TTF_STYLE_UNDERLINE")
+    @:include("SDL2/SDL_ttf.h")
+    public static var TTF_STYLE_UNDERLINE:Int;
+
+    @:native("TTF_STYLE_STRIKETHROUGH")
+    @:include("SDL2/SDL_ttf.h")
+    public static var TTF_STYLE_STRIKETHROUGH:Int;
+
+    ////////////////////////////////////////
+
+    @:native("TTF_Init")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_Init():Int;
+
+    @:native("TTF_SetFontStyle")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_SetFontStyle(font:Pointer<TTF_Font>, style:Int):Void;
+
+    @:native("TTF_GetFontStyle")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_GetFontStyle(font:Pointer<TTF_Font>):Int;
+
+    @:native("TTF_OpenFont")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_OpenFont(file:ConstCharStar, ptsize:Int):Pointer<TTF_Font>;
+
+    @:native("TTF_RenderText_Blended")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_RenderText_Blended(font:Pointer<TTF_Font>, text:ConstCharStar, fg:SDL_Color):Pointer<SDL_Surface>;
+
+    @:native("TTF_RenderText_Blended_Wrapped")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_RenderText_Blended_Wrapped(font:Pointer<TTF_Font>, text:ConstCharStar, fg:SDL_Color, width:Int):Pointer<SDL_Surface>;
+
+    @:native("TTF_CloseFont")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_CloseFont(font:Pointer<TTF_Font>):Void;
+
+    @:native("TTF_Quit")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_Quit():Void;
+
+    @:native("TTF_GetError")
+    @:include("SDL2/SDL_ttf.h")
+    extern public static function TTF_GetError():ConstCharStar;
+}

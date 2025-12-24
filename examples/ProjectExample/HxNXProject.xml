@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- ========================================== -->
+	<!-- HAXE CONFIGURATION (Required)              -->
+	<!-- ========================================== -->
+
+	<!-- Source directory -->
+	<source path="source" />
+
+	<!-- Main class entry point -->
+	<haxemain name="source.Main" />
+
+	<!-- Error reporting style: pretty, indent, or classic -->
+	<haxeerrorreportingstyle type="pretty" />
+
+	<!-- C++ output directory -->
+	<cppoutput path="output" />
+
+	<!-- Haxe debug mode -->
+	<haxedebug value="false"/>
+
+	<!-- ========================================== -->
+	<!-- NINTENDO SWITCH CONFIGURATION (Required)   -->
+	<!-- ========================================== -->
+
+	<!-- Project name and console IP for deployment -->
+	<switchproject name="ProjectExample" consoleip="0.0.0.0"/>
+
+	<!-- Application metadata for Nintendo Switch -->
+	<switchmeta apptitle="Vupx Engine project example" appversion="1.0.0" appauthor="Slushi" />
+
+	<!-- ========================================== -->
+	<!-- BUILD CONFIGURATION                        -->
+	<!-- ========================================== -->
+
+	<!-- Number of parallel jobs for make (1-16) -->
+	<makefilejobs value="2" />
+
+	<!-- Send to Switch after successful compilation -->
+	<sendaftercompile value="false"/>
+
+	<!-- Delete temporary files after compilation -->
+	<deletetemporalfiles value="true"/>
+
+	<!-- ========================================== -->
+	<!-- HAXE LIBRARIES                             -->
+	<!-- ========================================== -->
+
+	<haxelib name="vupxengine"/>
+</project>

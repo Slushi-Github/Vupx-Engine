@@ -1,0 +1,43 @@
+{
+    "libVersion": "1.0.0",
+    "haxeLibs": [
+    ],
+    "switchLibs": [
+        "SDL2_image",
+        "SDL2_gfx",
+        "SDL2_net",
+        "SDL2_mixer",
+        "opusfile",
+        "opus",
+        "mpg123",
+        "vorbisidec",
+        "modplug",
+        "vorbisfile",
+        "vorbis",
+        "ogg",
+        "openal",
+        "SDL2",
+        "SDL2main",
+        "glad",
+        "EGL",
+        "glapi",
+        "drm_nouveau",
+        "pthread",
+        "png",
+        "jpeg",
+        "webp",
+        "stdc++",
+        "m",
+        "z",
+        "bz2"
+    ],
+    "hxDefines": [
+        "-D HXCPP_STACK_TRACE",
+        "-D HXCPP_CHECK_POINTER",
+        "-D HXCPP_STACK_LINE",
+        "-D HXCPP_SL_DETAIL_NULL_REF"
+    ],
+    "mainDefines": [],
+    "cDefines": ["-DENABLE_NXLINK"],
+    "cppDefines": []
+}

@@ -1,0 +1,11 @@
+plugins:
+  - jekyll-relative-links
+  - jekyll-remote-theme
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - README.md
+  - LICENSE.md
+
+remote_theme: vaibhavvikas/jekyll-theme-minimalistic

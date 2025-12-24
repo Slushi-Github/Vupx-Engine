@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vupx Engine</title>
+
+    <meta content="Vupx Engine" property="og:title" />
+    <meta content="A framework engine for creating games for the Nintendo Switch with Haxe!"
+        property="og:description" />
+    <meta content="https://slushi-github.github.io/Vupx-Engine" property="og:url" />
+    <meta content="#CF6011" data-react-helmet="true" name="theme-color" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;700&display=swap');
+
+        :root {
+            --vupx-orange: rgb(207, 96, 17);
+            --vupx-slushi: rgb(143, 217, 209);
+            --vupx-black: #050505;
+            --haxe-color: rgb(234, 130, 32);
+            --joycon-cyan: rgb(0, 195, 227);
+            --joycon-red: rgb(255, 69, 84);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--vupx-black);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(207, 96, 17, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(143, 217, 209, 0.3) 0%, transparent 40%);
+            background-repeat: no-repeat;
+            color: #eeeeee;
+            min-height: 100vh;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .text-vupx {
+            color: var(--vupx-orange);
+        }
+
+        .text-haxe {
+            color: var(--haxe-color);
+        }
+
+        .text-slushi {
+            color: var(--vupx-slushi);
+        }
+
+        .text-joycon-gradient {
+            background: linear-gradient(90deg, var(--joycon-cyan) 0%, var(--joycon-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .bg-vupx {
+            background-color: var(--vupx-orange);
+        }
+
+        .glow-vupx {
+            box-shadow: 0 0 20px rgba(207, 96, 17, 0.4);
+        }
+
+        .btn-vupx:hover {
+            background-color: rgb(180, 80, 15);
+            transform: translateY(-2px);
+        }
+
+        pre {
+            scrollbar-width: thin;
+            scrollbar-color: var(--vupx-orange) transparent;
+        }
+
+        .code-container {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .terminal-header {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto relative z-20">
+        <div class="text-2xl font-bold tracking-tight text-white">
+            Vupx Engine
+        </div>
+        <div class="flex gap-6 text-sm font-medium">
+            <a href="https://github.com/Slushi-Github/Vupx-Engine" target="_blank"
+                class="hover:text-vupx transition-colors">GitHub</a>
+            <a href="https://github.com/Slushi-Github/Vupx-Engine/docs/Documentation/Documentation/README.md"
+                target="_blank" class="hover:text-vupx transition-colors">Documentation</a>
+        </div>
+    </nav>
+
+    <!-- Main Hero -->
+    <main class="max-w-4xl mx-auto px-6 pt-20 pb-20 text-center relative z-10">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-white leading-tight">
+            Create games with <span class="text-haxe">Haxe</span> <br>
+            for the <span class="text-joycon-gradient">Nintendo Switch</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            An framework engine with 2D and 3D capabilities made for <span class="underline">homebrew</span> built on
+            <strong>Haxe</strong>, <strong>OpenGL</strong>, and <strong>SDL2</strong>, fully open source!
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <a href="https://github.com/Slushi-Github/Vupx-Engine/docs/Documentation/GettingStarted/README.md"
+                target="_blank"
+                class="flex items-center justify-center bg-vupx text-black font-bold px-8 py-3 rounded-md btn-vupx transition-all glow-vupx">
+                Get Started
+            </a>
+            <a href="https://github.com/Slushi-Github/Vupx-Engine" target="_blank"
+                class="flex items-center justify-center border border-white/20 hover:border-vupx px-8 py-3 rounded-md transition-all backdrop-blur-sm">
+                View Source
+            </a>
+        </div>
+    </main>
+
+    <!-- Code Examples -->
+    <section class="py-10 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto space-y-8">
+
+            <!-- Entry Point -->
+            <div class="code-container border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                <div class="px-4 py-2 bg-zinc-900/50 flex justify-between items-center border-b border-white/5">
+                    <span class="text-xs mono text-gray-400">source/Main.hx</span>
+                    <span class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Entry Point</span>
+                </div>
+                <pre class="p-6 mono text-sm overflow-x-auto text-gray-300">
+<span class="text-vupx">package</span> source;
+
+<span class="text-vupx">import</span> vupx.VupxEngine;
+
+<span class="text-vupx">class</span> Main {
+    <span class="text-vupx">public static function</span> main():Void {
+        VupxEngine.init(<span class="text-green-500">"MyProject"</span>, <span class="text-vupx">new</span> MyFirstState(), <span class="text-vupx">false</span>);
+    }
+}</pre>
+            </div>
+
+            <!-- State Logic -->
+            <div class="code-container border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                <div class="px-4 py-2 bg-zinc-900/50 flex justify-between items-center border-b border-white/5">
+                    <span class="text-xs mono text-gray-400">source/MyFirstState.hx</span>
+                    <span class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Game State</span>
+                </div>
+                <pre class="p-6 mono text-sm overflow-x-auto text-gray-300">
+<span class="text-vupx">package</span> source;
+
+<span class="text-vupx">import</span> vupx.core.VpConstants;
+<span class="text-vupx">import</span> vupx.objects.VpText;
+<span class="text-vupx">import</span> vupx.states.VpState;
+
+<span class="text-vupx">class</span> MyFirstState <span class="text-vupx">extends</span> VpState {
+    <span class="text-vupx">override public function</span> create():Void {
+        <span class="text-gray-500">// Create a text object</span>
+        <span class="text-vupx">var</span> spriteText = <span class="text-vupx">new</span> VpText(<span class="text-orange-400">0</span>, <span class="text-orange-400">0</span>, <span class="text-green-500">"Hello World!"</span>, VpConstants.VUPX_DEFAULT_FONT_PATH, <span class="text-orange-400">24</span>);  
+        spriteText.center(); <span class="text-gray-500">// Center the text on screen</span>
+        add(spriteText); <span class="text-gray-500">// Add text to the current state</span>
+    }
+}</pre>
+            </div>
+
+            <!-- Compile Command -->
+            <div class="code-container border border-vupx/30 rounded-xl overflow-hidden shadow-2xl">
+                <div class="px-4 py-2 terminal-header flex justify-between items-center border-b border-white/5">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-terminal text-[10px] text-vupx"></i>
+                        <span class="text-[10px] text-gray-400 mono">Terminal</span>
+                    </div>
+                    <span class="text-[10px] text-vupx uppercase font-bold tracking-widest">Build Project</span>
+                </div>
+                <div class="p-6 mono text-sm flex items-center gap-3">
+                    <span class="text-vupx font-bold">$</span>
+                    <code class="text-white">HaxeNXCompiler --compile</code>
+                    <span class="animate-pulse w-2 h-5 bg-vupx/50 block"></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 text-center relative z-20">
+        <div class="flex justify-center gap-8 mb-6 text-xl text-gray-600">
+            <a href="https://github.com/Slushi-Github/Vupx-Engine" target="_blank"
+                class="hover:text-vupx transition-colors"><i class="fab fa-github"></i></a>
+        </div>
+
+        <div class="space-y-2 mb-8">
+            <p class="text-sm tracking-wide uppercase text-gray-400 font-bold">
+                Vupx Engine made by Andrés E. G.
+                <a href="https://github.com/Slushi-Github" target="_blank"
+                    class="text-slushi hover:opacity-80 transition-opacity">
+                    (Slushi)
+                </a>
+            </p>
+        </div>
+
+        <div class="max-w-md mx-auto px-4 border-t border-white/10 pt-6 mt-4">
+            <p class="text-[11px] text-gray-500 leading-relaxed uppercase tracking-tighter mb-8">
+                Nintendo Switch is a trademark of Nintendo Co., Ltd. <br>
+                <span class="text-gray-400 font-bold">This project is not affiliated with, authorized, or endorsed by
+                    Nintendo.</span> <br>
+                This project is intended for use in the creation of <span class="underline">homebrew</span> content.
+            </p>
+
+            <div class="pt-8 border-t border-white/5">
+                <p class="text-[9px] text-zinc-600 uppercase tracking-[0.3em]">
+                    This page was built with <span class="text-zinc-400 font-semibold">Gemini AI</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+name: Vupx Engine project example build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+
+    steps:
+      - name: Checkout Project Repository
+        uses: actions/checkout@v4
+
+      - name: Install Haxe 4.3.7
+        run: |
+          apt-get update
+          apt-get install -y wget git neko libgc-dev
+          
+          echo === DOWNLOADING HAXE FROM GITHUB ===
+          wget https://github.com/HaxeFoundation/haxe/releases/download/4.3.7/haxe-4.3.7-linux64.tar.gz
+
+          mkdir haxe_temp
+          tar -xf haxe-4.3.7-linux64.tar.gz -C haxe_temp
+          cp -r haxe_temp/haxe_*/* /usr/local/bin/
+          echo =========
+
+          echo === UPDATING HAXELIB ===
+          mkdir -p ./.haxelib
+          haxelib --always --quiet setup .haxelib
+          haxelib --global --always --quiet update haxelib
+          echo =========
+          
+          echo  === HAXE VERSION ===
+          haxe --version
+          echo =========
+
+      - name: Install DevKitPro dependencies
+        run: |
+          echo === SYNCING DEVKITPRO REPOS ===
+          dkp-pacman -Sy --noconfirm
+          
+          echo === INSTALLING SWITCH LIBRARIES ===
+          dkp-pacman -S --needed --noconfirm \
+            switch-bzip2 switch-cmake switch-curl switch-flac \
+            switch-freetype switch-glad switch-glm switch-harfbuzz \
+            switch-libdrm_nouveau switch-libjpeg-turbo switch-libmodplug \
+            switch-libogg switch-libopus switch-libpng switch-libvorbis \
+            switch-libvorbisidec switch-libwebp switch-mesa switch-mpg123 \
+            switch-openal-soft switch-opusfile switch-pkg-config switch-sdl2 \
+            switch-sdl2_gfx switch-sdl2_image switch-sdl2_mixer \
+            switch-sdl2_net switch-sdl2_ttf switch-tools switch-zlib
+      - name: Build HaxeNXCompiler
+        run: |
+          git clone https://github.com/Slushi-Github/HaxeNXCompiler.git compiler_source
+
+          echo === INSTALLING HXCPP ===
+          haxelib --global --always --quiet install hxcpp
+          echo =========
+
+          cd compiler_source
+
+          echo === BUILDING HaxeNXCompiler ===
+          haxe build.hxml
+          echo =========
+          
+          mv export/HaxeNXCompiler ../HaxeNXCompiler
+          cd ..
+          chmod +x HaxeNXCompiler
+          
+          echo === COMPILER VERSION ===
+          ./HaxeNXCompiler --version
+          echo =========
+
+      - name: Compile project to Nintendo Switch
+        run: |
+          cd examples/ProjectExample
+
+          echo === INSTALLING LIBRARIES FOR VUPX ENGINE ===
+          mkdir -p ./.haxelib
+          haxelib --quiet setup .haxelib
+          haxelib --always --quiet git hxcpp https://github.com/Slushi-Github/hxcpp-nx.git
+          haxelib --always --quiet git hx_libnx https://github.com/Slushi-Github/hx_libnx.git
+          echo haxelib --always --quiet git vupxengine https://github.com/Slushi-Github/Vupx-Engine.git
+          echo =========
+
+          echo === COMPILING PROJECT ===
+          ../../HaxeNXCompiler --compile
+          echo =========
+          
+      - name: Upload Build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: ProjectExample_Switch
+          path: examples/ProjectExample/output/SwitchFiles/*.nro

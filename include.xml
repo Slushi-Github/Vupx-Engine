@@ -1,0 +1,31 @@
+<xml>
+    <pragma once="true" />
+
+    <files id="haxe">
+        <!-- Libraries from DevkitPro -->
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/SDL2" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/vorbis" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/AL" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/glad" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/glm" if="nx"/>
+
+        <!-- External C/C++ libraries -->
+        <compilerflag value="-I${haxelib:vupxengine}/cppBindings" if="nx" />
+        <include name='${haxelib:vupxengine}/cppBindings/include.xml'/>
+    </files>
+
+    <files id="__main__">
+        <!-- Libraries from DevkitPro -->
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/SDL2" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/vorbis" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/AL" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/glad" if="nx"/>
+        <compilerflag value="-I${DEVKITPRO}/portlibs/switch/include/glm" if="nx"/>
+
+        <!-- External C/C++ libraries -->
+        <compilerflag value="-I${haxelib:vupxengine}/cppBindings" if="nx" />
+        <include name='${haxelib:vupxengine}/cppBindings/include.xml'/>
+    </files>
+</xml>

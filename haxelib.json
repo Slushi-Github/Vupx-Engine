@@ -1,0 +1,18 @@
+{
+    "name": "vupxengine",
+    "url": "https://github.com/Slushi-Github/Vupx-Engine",
+    "license": "MIT",
+    "tags": [
+        "nintendo",
+        "switch",
+        "game",
+        "engine"
+    ],
+    "description": "A framework engine for Nintendo Switch homebrew games.",
+    "version": "1.0.0",
+    "releasenote": "",
+    "contributors": [
+        "Slushi"
+    ],
+    "dependencies": {}
+}

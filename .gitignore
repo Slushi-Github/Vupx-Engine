@@ -1,0 +1,18 @@
+# Nintendo Switch files 
+*.nro
+*.ncap
+*.elf
+
+# HaxeNXCompiler
+compiler_source/*
+HaxeNXCompiler
+
+# Haxelib
+.haxelib/*
+
+# ProjectExample
+examples/ProjectExample/.haxelib
+examples/ProjectExample/output/*
+examples/ProjectExample/haxeHXML.hxml
+examples/ProjectExample/Makefile
+examples/ProjectExample/HaxeNXCompiler
