@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - State Not Found | Vupx Engine</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;700&display=swap');
+
+        :root {
+            --vupx-orange: rgb(207, 96, 17);
+            --vupx-black: #050505;
+            --joycon-cyan: rgb(0, 195, 227);
+            --joycon-red: rgb(255, 69, 84);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--vupx-black);
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(0, 195, 227, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 85% 50%, rgba(255, 69, 84, 0.15) 0%, transparent 35%);
+            color: #eeeeee;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .glitch {
+            position: relative;
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: white;
+            letter-spacing: -0.05em;
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+
+            2%,
+            64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+
+            4%,
+            60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        .glitch:before,
+        .glitch:after {
+            content: "404";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch:before {
+            left: 2px;
+            text-shadow: -2px 0 var(--joycon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch:after {
+            left: -2px;
+            text-shadow: -2px 0 var(--joycon-red);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(31px, 9999px, 94px, 0);
+            }
+
+            20% {
+                clip: rect(62px, 9999px, 42px, 0);
+            }
+
+            40% {
+                clip: rect(12px, 9999px, 98px, 0);
+            }
+
+            60% {
+                clip: rect(85px, 9999px, 13px, 0);
+            }
+
+            80% {
+                clip: rect(54px, 9999px, 26px, 0);
+            }
+
+            100% {
+                clip: rect(9px, 9999px, 73px, 0);
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(65px, 9999px, 100px, 0);
+            }
+
+            20% {
+                clip: rect(10px, 9999px, 5px, 0);
+            }
+
+            40% {
+                clip: rect(48px, 9999px, 90px, 0);
+            }
+
+            60% {
+                clip: rect(12px, 9999px, 32px, 0);
+            }
+
+            80% {
+                clip: rect(89px, 9999px, 10px, 0);
+            }
+
+            100% {
+                clip: rect(22px, 9999px, 55px, 0);
+            }
+        }
+
+        .btn-vupx {
+            background-color: var(--vupx-orange);
+            box-shadow: 0 0 20px rgba(207, 96, 17, 0.4);
+        }
+
+        .btn-vupx:hover {
+            transform: scale(1.05);
+            background-color: rgb(230, 110, 25);
+        }
+
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+
+<body class="bg-grid">
+
+    <div class="text-center px-6 relative z-10">
+        <div class="glitch mb-4" data-text="404">404</div>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 uppercase tracking-widest">
+            VpState Not Found
+        </h2>
+
+        <div class="mono text-zinc-500 text-sm max-w-lg mx-auto mb-6 leading-relaxed">
+            <span class="text-vupx">Exception:</span> Unknown identifier: ThisState
+        </div>
+
+        <p class="text-zinc-400 text-sm mb-10 italic">
+            This page doesn't exist, or should it? In that case, report the error.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="index.html"
+                class="flex items-center gap-2 px-8 py-3 rounded-md font-bold text-black btn-vupx transition-all">
+                <i class="fas fa-home"></i>
+                Back Home
+            </a>
+            <a href="https://github.com/Slushi-Github/Vupx-Engine" target="_blank"
+                class="flex items-center gap-2 px-8 py-3 rounded-md font-bold border border-white/10 hover:border-vupx/50 transition-all backdrop-blur-sm">
+                <i class="fab fa-github"></i>
+                Report Issue
+            </a>
+        </div>
+    </div>
+</body>
+</html>

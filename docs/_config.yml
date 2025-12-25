@@ -5,7 +5,9 @@ relative_links:
   enabled: true
   collections: true
 include:
-  - README.md
-  - LICENSE.md
+  - ../README.md
+  - ../LICENSE.md
+  - ./Documentation/Documentation/README.md
+  - ./Documentation/GettingStarted/README.md
 
 remote_theme: vaibhavvikas/jekyll-theme-minimalistic

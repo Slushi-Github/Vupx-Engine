@@ -84,7 +84,7 @@ jobs:
           haxelib --quiet setup .haxelib
           haxelib --always --quiet git hxcpp https://github.com/Slushi-Github/hxcpp-nx.git
           haxelib --always --quiet git hx_libnx https://github.com/Slushi-Github/hx_libnx.git
-          echo haxelib --always --quiet git vupxengine https://github.com/Slushi-Github/Vupx-Engine.git
+          haxelib --always --quiet git vupxengine https://github.com/Slushi-Github/Vupx-Engine.git
           echo =========
 
           echo === COMPILING PROJECT ===
