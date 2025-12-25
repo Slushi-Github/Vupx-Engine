@@ -1,16 +1,18 @@
 package source;
 
-import vupx.Vupx;
+import vupx.core.VpConstants;
 import vupx.objects.VpText;
 import vupx.states.VpState;
+import vupx.Vupx;
 
 class TestState extends VpState {
 	var txt:VpText;
 
 	override public function create():Void {
-		txt = new VpText(100, 100, "Hello World!", VpConstants.VUPX_DEFAULT_FONT_PATH, 32);
-		txt.center();
-		add(txt);
+		// Create a text object
+		txt = new VpText(0, 0, "Hello World!", VpConstants.VUPX_DEFAULT_FONT_PATH, 32);
+		txt.center(); // Center the text on the screen
+		add(txt); // Add the text object to the state
 	}
 
 	override public function update(elapsed:Float) {
@@ -18,6 +20,7 @@ class TestState extends VpState {
 
 		var speed:Float = 200 * elapsed;
 
+		// Move the text
 		if (Vupx.controller.isPressed(LEFT)) {
 			txt.x -= speed;
 		}
@@ -31,6 +34,7 @@ class TestState extends VpState {
 			txt.y -= speed;
 		}
 
+		// Rotate the text
 		if (Vupx.controller.isPressed(Y)) {
 			txt.rotationY += speed;
 		}
@@ -44,6 +48,7 @@ class TestState extends VpState {
             txt.rotationX -= speed;
         }
 
+		// Move text in Z axis
         if (Vupx.controller.isPressed(ZR)) {
             txt.z += speed;
         }
