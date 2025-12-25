@@ -16,7 +16,6 @@ import vupx.objects.VpSprite;
 // Creamos un sprite
 var sprite = new VpSprite();
 sprite.createGraphic(320, 320, VpColor.WHITE);
-add(sprite);
 
 // Ahora creemos un shader de aberración cromática:
 var shader = new VpShader(null, '
@@ -54,6 +53,9 @@ var shader = new VpShader(null, '
 // Aplicamos el shader al sprite
 sprite.setPostShader(shader);
 
+// Agregamos el sprite al state
+add(sprite);
+
 // Y ahora ajustamos los parámetros
 sprite.setShaderParam("uStrength", ShaderVariable.FLOAT, 0.1);
 sprite.setShaderParam("uCenter", ShaderVariable.VEC2, 0.5, 0.5);
@@ -61,7 +63,7 @@ sprite.setShaderParam("uCenter", ShaderVariable.VEC2, 0.5, 0.5);
 
 Los shaders estan en una fase experimental, asi que tengan en cuenta que pueden fallar o tener cambios futuros.
 
-Los shaders **de momento** solo pueden ser aplicados a sprites, no a camaras.
+Los shaders **de momento** solo pueden ser aplicados a sprites, no a cámaras, y los textos no soportan shaders todavia.
 
 -----------
 

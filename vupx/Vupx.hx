@@ -58,7 +58,6 @@ class Vupx {
      */
     public static var currentState:Null<VpState> = null;
 
-
     /**
      * The main camera object
      */

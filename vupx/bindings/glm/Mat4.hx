@@ -9,7 +9,6 @@ extern class Mat4 {
     @:native("glm::mat4")
     extern public function new(value:Float);
 
-    // CAMBIADO: Usar función estática con untyped __cpp__
     @:native("Mat4_mul")
     extern public static inline function mul(left:Mat4, right:Mat4):Mat4 {
         return untyped __cpp__("{0} * {1}", left, right);

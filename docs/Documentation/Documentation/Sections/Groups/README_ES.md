@@ -13,6 +13,7 @@ Los grupos son una clase que te permite agrupar objetos, esto permite orden:
 import vupx.groups.VpGroup;
 
 var group = new VpGroup();
+add(group); // Agrega el grupo al state
 
 // Agregar un objeto al grupo
 var sprite = new VpSprite(100, 100);

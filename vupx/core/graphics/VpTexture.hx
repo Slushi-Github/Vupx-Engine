@@ -172,7 +172,6 @@ class VpTexture {
         return texture;
     }
 
-
     /**
      * Create a texture with a color and size
      */
@@ -397,55 +396,6 @@ class VpTexture {
             _loaded = false;
             id = 0;
         }
-    }
-    
-    /**
-     * Clone texture using framebuffer
-    */
-    public function clone():Null<VpTexture> {
-        if (!_loaded) {
-            VupxDebug.log("Cannot clone unloaded texture", ERROR);
-            return null;
-        }
-        
-        var fbo:UInt32 = 0;
-        GL.glGenFramebuffers(1, Pointer.addressOf(fbo));
-        GL.glBindFramebuffer(GL.GL_FRAMEBUFFER, fbo);
-
-        GL.glFramebufferTexture2D(
-            GL.GL_FRAMEBUFFER,
-            GL.GL_COLOR_ATTACHMENT0,
-            GL.GL_TEXTURE_2D,
-            this.id,
-            0
-        );
-        
-        var pixelCount = this.width * this.height * 4;
-        var pixels:Pointer<UInt8> = untyped __cpp__("(unsigned char*)malloc({0})", pixelCount);
-        
-        GL.glReadPixels(
-            0, 0,
-            this.width,
-            this.height,
-            GL.GL_RGBA,
-            GL.GL_UNSIGNED_BYTE,
-            cast pixels
-        );
-        
-        GL.glBindFramebuffer(GL.GL_FRAMEBUFFER, 0);
-        GL.glDeleteFramebuffers(1, Pointer.addressOf(fbo));
-        
-        var cloned = VpTexture.createFromPixelData(this.width, this.height, pixels);
-        
-        // untyped __cpp__("free({0})", pixels);
-        Stdlib.free(pixels);
-        
-        if (cloned != null) {
-            cloned.path = this.path + "_clone";
-            VupxDebug.log('Texture cloned using framebuffer (${cloned.width}x${cloned.height})', DEBUG);
-        }
-    
-        return cloned;
     }
     
     /**

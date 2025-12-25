@@ -13,6 +13,7 @@ Groups are a class that allows you to group objects together. This helps with or
 import vupx.groups.VpGroup;
 
 var group = new VpGroup();
+add(group); // Add the group to the state
 
 // Add an object to the group
 var sprite = new VpSprite(100, 100);

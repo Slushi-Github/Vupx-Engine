@@ -22,7 +22,7 @@ void main() {
         bool isGrayscale = (texColor.g < 0.01 && texColor.b < 0.01);
         
         if (isGrayscale) {
-            // Grayscale texture (texto)
+            // Grayscale texture
             finalColor = Color;
             finalAlpha = texColor.r * Alpha;
         } else {

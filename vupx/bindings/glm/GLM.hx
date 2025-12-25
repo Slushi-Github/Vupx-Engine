@@ -16,7 +16,6 @@ extern class GLM {
     @:native("glm::translate")
     public static function translate(m:Mat4, v:Vec3):Mat4;
 
-    // CORREGIDO: Función estática para rotate
     public static inline function rotate(m:Mat4, angle:Float, axis:Vec3):Mat4 {
         return untyped __cpp__("glm::rotate({0}, (float){1}, {2})", m, angle, axis);
     }
