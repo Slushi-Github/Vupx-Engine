@@ -53,22 +53,24 @@ jobs:
             switch-openal-soft switch-opusfile switch-pkg-config switch-sdl2 \
             switch-sdl2_gfx switch-sdl2_image switch-sdl2_mixer \
             switch-sdl2_net switch-sdl2_ttf switch-tools switch-zlib
+
       - name: Build HaxeNXCompiler
         run: |
           git clone https://github.com/Slushi-Github/HaxeNXCompiler.git compiler_source
 
-          echo === INSTALLING HXCPP ===
+          echo === INSTALLING STANDARD HXCPP FOR COMPILER ===
           haxelib --global --always --quiet install hxcpp
           echo =========
 
-          cd compiler_source
+          pushd compiler_source
 
           echo === BUILDING HaxeNXCompiler ===
           haxe build.hxml
           echo =========
           
           mv export/HaxeNXCompiler ../HaxeNXCompiler
-          cd ..
+          popd
+          
           chmod +x HaxeNXCompiler
           
           echo === COMPILER VERSION ===
@@ -82,14 +84,29 @@ jobs:
           echo === INSTALLING LIBRARIES FOR VUPX ENGINE ===
           mkdir -p ./.haxelib
           haxelib --quiet setup .haxelib
+          
           haxelib --always --quiet git hxcpp https://github.com/Slushi-Github/hxcpp-nx.git
           haxelib --always --quiet git hx_libnx https://github.com/Slushi-Github/hx_libnx.git
           haxelib --always --quiet git vupxengine https://github.com/Slushi-Github/Vupx-Engine.git
           echo =========
 
-          echo === COMPILING PROJECT ===
+          echo === SETUP HXCPP ===
+          pushd .haxelib/hxcpp/git/tools/hxcpp
+          haxe compile.hxml
+          popd
+          echo =========
+
+          echo === COMPILING PROJECT WITH HAXENXCOMPILER ===
           ../../HaxeNXCompiler --compile
           echo =========
+
+      - name: Verify Build Success
+        run: |
+          # Check if .nro file exists
+          if ! ls examples/ProjectExample/output/SwitchFiles/*.nro 1> /dev/null 2>&1; then
+            echo "::error::.nro file not found."
+            exit 1
+          fi
           
       - name: Upload Build files
         uses: actions/upload-artifact@v4
